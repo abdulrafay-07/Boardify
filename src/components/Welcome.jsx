@@ -9,7 +9,7 @@ const Welcome = () => {
             const userData = await authService.getCurrentUser();
     
             if (userData) {
-                setUsername(userData.name);
+                setUsername(userData.username);
             } else {
                 setUsername("none");
             }

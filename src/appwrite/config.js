@@ -97,12 +97,14 @@ export class DatabaseService {
     }
 
     //upload a file
-    async uploadFile(file) {
+    async uploadFile(data) {
+        const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
+
         try {
             return await this.bucket.createFile(
                 conf.appwriteBucketID,
                 ID.unique(),
-                file
+                blob
             )
         } catch (error) {
             console.log("Appwrite service :: uploadFile :: error", error);
