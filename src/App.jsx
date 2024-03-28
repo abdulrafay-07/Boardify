@@ -23,12 +23,9 @@ function App() {
   }, [])
 
   return !loading ? (
-    <div>
-      <Home />
       <main>
         <Outlet />
       </main>
-    </div>
   ) : null
 }
 

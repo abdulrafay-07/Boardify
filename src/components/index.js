@@ -4,5 +4,6 @@ import Welcome from "./Welcome";
 import Input from "./Input";
 import Login from "./Login";
 import Signup from "./Signup";
+import AuthLayout from "./AuthLayout";
 
-export {Menu, Button, Welcome, Input, Login, Signup, };
+export {Menu, Button, Welcome, Input, Login, Signup, AuthLayout};

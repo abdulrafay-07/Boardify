@@ -1,8 +1,7 @@
 import React from 'react';
 import { Menu, Welcome } from '../components/index';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom'
-import { Login } from '../components/index';
+import { Login } from './index';
 
 const Home = () => {
   const isAuthenticated = useSelector(state => state.auth.status);
