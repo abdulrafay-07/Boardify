@@ -2,6 +2,18 @@ import conf from "../conf/conf";
 import { Client, ID, Databases, Storage, Query } from "appwrite";
 import authService from "./auth";
 
+let name = "";
+
+const user = async () => {
+    const userData = await authService.getCurrentUser();
+
+    if (userData) {
+        name += userData.name;
+    }
+}
+
+user();
+
 export class DatabaseService {
     client = new Client();
     databases;
@@ -16,7 +28,7 @@ export class DatabaseService {
     }
 
     //create a board
-    async createBoard({title, slug, boardID, userID, username}) {
+    async createBoard({title, slug, boardID, userID, username = name}) {
         try {
             return await this.databases.createDocument(
                 conf.appwriteDatabaseID,
@@ -100,11 +112,13 @@ export class DatabaseService {
     async uploadFile(data) {
         const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
 
+        const file = new File([blob], 'drawing.json', { type: 'application/json' });
+
         try {
             return await this.bucket.createFile(
                 conf.appwriteBucketID,
                 ID.unique(),
-                blob
+                file
             )
         } catch (error) {
             console.log("Appwrite service :: uploadFile :: error", error);
