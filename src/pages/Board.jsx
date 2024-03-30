@@ -35,9 +35,11 @@ const Board = () => {
     }
 
     return (
+        isAuthor && (
             <div>
                 <Boards board={board} />
             </div>
+        )
     )
 }
 

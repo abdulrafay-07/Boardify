@@ -1,18 +1,5 @@
 import conf from "../conf/conf";
 import { Client, ID, Databases, Storage, Query } from "appwrite";
-import authService from "./auth";
-
-let name = "";
-
-const user = async () => {
-    const userData = await authService.getCurrentUser();
-
-    if (userData) {
-        name += userData.name;
-    }
-}
-
-user();
 
 export class DatabaseService {
     client = new Client();
@@ -28,7 +15,7 @@ export class DatabaseService {
     }
 
     //create a board
-    async createBoard({title, slug, boardID, userID, username = name}) {
+    async createBoard({title, slug, boardID, userID, username}) {
         try {
             return await this.databases.createDocument(
                 conf.appwriteDatabaseID,

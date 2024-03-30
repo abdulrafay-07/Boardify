@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { Tldraw, useEditor } from 'tldraw';
 import { Button, Input, Menu } from '../index.js';
 import appwriteService from "../../appwrite/config.js";
@@ -7,17 +7,12 @@ import { useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 
 const createBoard = ({ board }) => {
-    const [submitted, setSubmitted] = useState(false);
-    const {register, handleSubmit, setValue, watch, control} = useForm();
-    const editor = useEditor();
+    const {register, handleSubmit, setValue, watch} = useForm();
 
     const navigate = useNavigate();
     const userData = useSelector((state) => state.auth.userData);
 
     const save = async (data) => {
-        const stringified = localStorage.getItem('my-editor-snapshot')
-        const drawingData = JSON.parse(stringified)
-
         if (board) {
             const file = drawingData ? await appwriteService.uploadFile(drawingData) : null;
 
@@ -37,7 +32,7 @@ const createBoard = ({ board }) => {
                 const fileId = file.$id;
                 data.boardID = fileId;
 
-                const boardDB = await appwriteService.createBoard({...data, userID: userData.$id, username : userData.username})
+                const boardDB = await appwriteService.createBoard({...data, userID: userData.$id, username : userData.name})
 
                 if (boardDB) {
                     navigate(`/board/${boardDB.$id}`);
@@ -76,49 +71,39 @@ const createBoard = ({ board }) => {
         return () => subscription.unsubscribe();
     }, [watch, slugTransform, setValue])
 
-    return !submitted ? (
+    return (
         <form onSubmit={handleSubmit(save)}>
-            <Input
-                label="Title: "
-                placeholder="Enter board title: "
-                className="mb-4"
-                {...register("title", { required: true })}
-            />
-            <Input
-                label="Slug :"
-                placeholder="Slug"
-                className="mb-4"
-                {...register("slug", { required: true })}
-                onInput={(e) => {
-                    setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true });
-                }}
-            />
-            <Button 
-                type="submit" bgColor="bg-blue-500" className="w-full" 
-                onClick={() => {
-                    setSubmitted(true)
-                }}
-            >
-                Enter
-            </Button>
-        </form>
-    ) : (
-        <form onSubmit={handleSubmit(save)} className="fixed inset-0">
-            <div className="relative h-full">
-                <div className="absolute top-0 left-0 z-10">
-                    <Menu />
+            <div className="fixed inset-0">
+                <div className="relative h-full">
+                    <div className="absolute top-0 left-0 z-10">
+                        <Menu />
+                    </div>
+                    <Button 
+                        type="submit" bgColor="bg-blue-500" className="absolute top-0 right-0 m-3 lg:m-6 z-10"
+                    >
+                        Save Board
+                    </Button>
+                    <div className="absolute top-0 right-1/2 p-1 lg:p-3 z-10">
+                        <Input
+                            label="Title: "
+                            placeholder="Enter board title"
+                            className="mb-4"
+                            {...register("title", { required: true })}
+                        />
+                    </div>
+                    <div className="hidden">
+                        <Input
+                            label="Slug :"
+                            placeholder="Slug"
+                            className="mb-4"
+                            {...register("slug", { required: true })}
+                            onInput={(e) => {
+                                setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true });
+                            }}
+                        />
+                    </div>
+                    <Tldraw className="relative z-0" />
                 </div>
-                <Button 
-                    type="submit" bgColor="bg-blue-500" className="absolute top-0 right-0 m-3 lg:m-6 z-10"
-                    onClick={() => {
-                        const snapshot = editor.store.getSnapshot()
-                        const stringified = JSON.stringify(snapshot)
-                        localStorage.setItem('my-editor-snapshot', stringified)
-                    }}
-                >
-                    Save Board
-                </Button>
-                <Tldraw className="relative z-0" />
             </div>
         </form>
     )
