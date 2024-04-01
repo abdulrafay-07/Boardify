@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import appwriteService from '../appwrite/config'
 import { useNavigate, useParams } from 'react-router-dom'
-import { Button, Boards } from '../components/index'
+import { Boards } from '../components/index'
 
 const Board = () => {
     const [board, setBoard] = useState(null);
@@ -24,16 +24,15 @@ const Board = () => {
         }
     }, [slug, navigate])
 
-    const deleteBlog = () => {
+    const deleteBoard = () => {
         appwriteService.deleteBoard(board.$id).then(() => {
-            appwriteService.deleteFile(board.boardID);
             navigate('/');
         });
     }
 
     return (
         <div>
-            <Boards boardId={boardId} />
+            <Boards boardId={boardId} deleteBoard={deleteBoard} />
         </div>
     )
 }

@@ -7,13 +7,16 @@ const Home = () => {
   const isAuthenticated = useSelector(state => state.auth.status);
 
   return isAuthenticated ? (
-    <div className="flex justify-between">
+    <div className="flex flex-col justify-center items-center h-screen">
+      <h1 className="text-center text-7xl md:text-9xl lg:text-[180px] text-gray-500 text-opacity-15 font-mono">Boardify</h1>
+      <div className="flex justify-between">
         <div>
             <Menu />
         </div>
         <div>
             <Welcome />
         </div>
+      </div>
     </div>
   ) : (
     <div>
