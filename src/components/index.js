@@ -1,10 +1,10 @@
 import Menu from "./Menu/Menu";
-import Button from "./Button";
-import Welcome from "./Welcome";
-import Input from "./Input";
-import Login from "./Login";
-import Signup from "./Signup";
-import AuthLayout from "./AuthLayout";
+import Button from "./common/Button";
+import Welcome from "./Welcome/Welcome";
+import Input from "./common/Input";
+import Login from "./Auth/Login";
+import Signup from "./Auth/Signup";
+import Protected from "./Auth/AuthLayout";
 import Boards from "./Board/Boards";
 
-export {Menu, Button, Welcome, Input, Login, Signup, AuthLayout, Boards };
+export {Menu, Button, Welcome, Input, Login, Signup, Protected, Boards };

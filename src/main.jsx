@@ -5,8 +5,8 @@ import './index.css'
 import { Provider } from 'react-redux'
 import store from './store/store.js'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { CreateBoard, Home, Login, Signup, Board, AllBoards } from "./pages/index.js"
-import { AuthLayout } from './components/index.js'
+import { CreateBoard, Home, Login, Signup, Board, AllBoards, JoinBoard } from "./pages/index.js"
+import { Protected } from './components/index.js'
 
 const router = createBrowserRouter([
   {
@@ -20,35 +20,44 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: (
-          <AuthLayout authentication={false}>
+          <Protected authentication={false}>
             <Login />
-          </AuthLayout>
+          </Protected>
         )
       },
       {
         path: "/signup",
         element: (
-          <AuthLayout authentication={false}>
+          <Protected authentication={false}>
             <Signup />
-          </AuthLayout>
+          </Protected>
         )
       },
       {
         path: "/create-board",
         element: (
-          <AuthLayout authentication>
+          <Protected authentication>
             {" "}
             <CreateBoard />
-          </AuthLayout>
+          </Protected>
         )
       },
       {
         path: "/your-boards",
         element: (
-          <AuthLayout authentication>
+          <Protected authentication>
             {" "}
             <AllBoards />
-          </AuthLayout>
+          </Protected>
+        )
+      },
+      {
+        path: "join-board",
+        element: (
+          <Protected authentication>
+            {" "}
+            <JoinBoard />
+          </Protected>
         )
       },
       {

@@ -40,7 +40,7 @@ const Menu = () => {
     }
 
     return (
-        <div className="fixed top-0 left-0 p-3 lg:p-6">
+        <div className="fixed top-0 left-0 mx-3 my-6 lg:m-6 font-secondary">
             {isMenuOpen ? 
                 <div>
                     <RxCross1 
@@ -53,7 +53,7 @@ const Menu = () => {
                                 <button 
                                     onClick={() => navigate(item.slug)}
                                     key={item.slug}
-                                    className="flex flex-col font-semibold text-lg lg:text-2xl mb-2"
+                                    className="flex flex-col text-lg md:text-2xl lg:text-3xl mb-2"
                                 >
                                     {item.name}
                                 </button>
@@ -63,9 +63,9 @@ const Menu = () => {
                             isAuthenticated && (
                                 <button 
                                     onClick={logoutHandler} 
-                                    className="font-semibold text-lg lg:text-2xl mb-2"
+                                    className="text-lg md:text-2xl lg:text-3xl mb-2"
                                 >
-                                    Log out
+                                    Logout
                                 </button>
                             )
                         }

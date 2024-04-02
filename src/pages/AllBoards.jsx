@@ -38,13 +38,13 @@ const AllBoards = () => {
             <div>
                 <Menu />
             </div>
-            <div className="flex flex-col items-center h-screen">
-                <div className="pt-12 lg:pt-0 mb-4 lg:mb-4 lg:h-1/3 flex items-center">
+            <div className="flex flex-col justify-center items-center pb-8 md:pb-0 h-screen font-secondary">
+                <div className="pt-12 lg:pt-0 mb-4 lg:mb-4 md:h-1/3 flex items-center">
                     {
-                        boards.length > 0 ? <h1 className="text-5xl my-2 text-gray-800">Your Boards</h1> : null
+                        boards.length > 0 ? <h1 className="text-5xl md:text-7xl my-2 text-gray-800 font-primary">Your Boards</h1> : null
                     }
                 </div>
-                <div className="lg:-mt-24 lg:h-full flex flex-col gap-y-3">
+                <div className="lg:-mt-16 md:h-full flex flex-col gap-y-4 text-xl">
                     {boards && boards.length > 0 ? (
                         selectedBoard ? (
                             <Boards boardId={selectedBoard.boardId} userId={selectedBoard.userId} />

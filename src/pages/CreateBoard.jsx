@@ -1,5 +1,4 @@
 import React, { useState, useCallback, useEffect } from 'react'
-import { Boards } from '../components/index'
 import { Button, Input, Menu } from '../components/index.js';
 import appwriteService from "../appwrite/config.js";
 import { useNavigate } from 'react-router-dom';
@@ -53,15 +52,19 @@ const CreateBoard = () => {
   }, [watch, slugTransform, setValue])
 
   return !isSubmitted ? (
-    <form onSubmit={handleSubmit(save)} className="flex flex-col items-center justify-center h-screen">
+    <div>
+      <div>
+        <Menu />
+      </div>
+      <form onSubmit={handleSubmit(save)} className="flex flex-col items-center justify-center h-screen font-secondary -m-24">
       <Input
         label=""
         placeholder="Enter board title"
-        className="mb-4"
+        className="mb-4 placeholder:text-xl"
         {...register("title", { required: true })}
       />
       <Button 
-        type="submit" bgColor="bg-blue-500"
+        type="submit" className="mt-2 text-xl"
       >
         Create a Board
       </Button>
@@ -77,6 +80,7 @@ const CreateBoard = () => {
         />
       </div>
     </form>
+    </div>
   ) : null
 }
 
