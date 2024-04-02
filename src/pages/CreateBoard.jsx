@@ -53,9 +53,9 @@ const CreateBoard = () => {
   }, [watch, slugTransform, setValue])
 
   return !isSubmitted ? (
-    <form onSubmit={handleSubmit(save)} className="flex flex-col items-center">
+    <form onSubmit={handleSubmit(save)} className="flex flex-col items-center justify-center h-screen">
       <Input
-        label="Title: "
+        label=""
         placeholder="Enter board title"
         className="mb-4"
         {...register("title", { required: true })}

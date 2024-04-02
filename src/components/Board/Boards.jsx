@@ -8,7 +8,6 @@ const Boards = ({ boardId, userId, deleteBoard }) => {
     const [isAuthor, setIsAuthor] = useState(false);
     const userData = useSelector((state) => state.auth.userData);
 
-
     useEffect(() => {
         setIsAuthor(userData.$id === userId);
     }, [userData.$id, userId]);
