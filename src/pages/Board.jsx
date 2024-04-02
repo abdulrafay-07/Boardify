@@ -6,6 +6,7 @@ import { Boards } from '../components/index'
 const Board = () => {
     const [board, setBoard] = useState(null);
     const [boardId, setBoardId] = useState(null);
+    const [userId, setUserId] = useState(null);
     const {slug} = useParams();
     const navigate = useNavigate();
 
@@ -15,6 +16,7 @@ const Board = () => {
                 if (board) {
                     setBoard(board);
                     setBoardId(board.boardID);
+                    setUserId(board.userID);
                 } else {
                     navigate('/');
                 }
@@ -32,7 +34,7 @@ const Board = () => {
 
     return (
         <div>
-            <Boards boardId={boardId} deleteBoard={deleteBoard} />
+            <Boards boardId={boardId} userId={userId} deleteBoard={deleteBoard} />
         </div>
     )
 }

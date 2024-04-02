@@ -34,6 +34,7 @@ const Menu = () => {
     const logoutHandler = () => {
         authService.logout()
         .then(() => {
+            navigate("/");
             dispatch(logout());
         })
     }
