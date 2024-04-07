@@ -11,7 +11,7 @@ const Welcome = () => {
             if (userData) {
                 setUsername(userData.name);
             } else {
-                setUsername("none");
+                setUsername(null);
             }
         }
 

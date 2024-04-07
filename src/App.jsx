@@ -35,14 +35,16 @@ function App() {
         {status ? (
             <div>
               <Menu />
-              <div className="fixed top-0 right-52 mt-8 cursor-pointer z-10">
-                <MdDarkMode 
-                  className="hidden md:block text-3xl dark:text-white" 
-                  onClick={handleThemeToggle}
-                />
-              </div>
-              <div className="fixed top-0 right-0">
-                <Welcome />
+              <div className="fixed top-0 right-0 inline-flex">
+                <div className="mt-8 cursor-pointer">
+                  <MdDarkMode 
+                    className="hidden md:block text-3xl dark:text-white" 
+                    onClick={handleThemeToggle}
+                  />
+                </div>
+                <div>
+                  <Welcome />
+                </div>
               </div>
               <MdDarkMode 
                 className="md:hidden fixed right-0 top-16 mr-6 mt-2 text-2xl md:text-3xl cursor-pointer z-10 dark-text-white"
