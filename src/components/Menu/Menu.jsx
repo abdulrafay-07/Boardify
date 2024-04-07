@@ -44,14 +44,17 @@ const Menu = () => {
             {isMenuOpen ? 
                 <div>
                     <RxCross1 
-                        className="font-bold text-3xl lg:text-4xl cursor-pointer" 
+                        className="dark:text-white text-black font-bold text-3xl lg:text-4xl cursor-pointer" 
                         onClick={() => SetIsMenuOpen(!isMenuOpen)}
                     />
-                    <div className="mt-2 p-3 lg:p-6 rounded-lg border-2 border-black">
+                    <div className="dark:bg-neutral-900 dark:text-white bg-white text-neutral-900 mt-2 p-3 lg:p-6 rounded-lg border-2 border-black dark:border-white">
                         {
                             items.map((item) => (
                                 <button 
-                                    onClick={() => navigate(item.slug)}
+                                    onClick={() => {
+                                        navigate(item.slug);
+                                        SetIsMenuOpen(!isMenuOpen)
+                                    }}
                                     key={item.slug}
                                     className="flex flex-col text-lg md:text-2xl lg:text-3xl mb-2"
                                 >
@@ -73,7 +76,7 @@ const Menu = () => {
                 </div>
                 :
                 <RxHamburgerMenu 
-                    className="font-bold text-3xl lg:text-4xl cursor-pointer" 
+                    className="dark:text-white text-black font-bold text-3xl lg:text-4xl cursor-pointer" 
                     onClick={() => SetIsMenuOpen(!isMenuOpen)}
                 />
             }

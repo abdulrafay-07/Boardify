@@ -32,16 +32,16 @@ const Login = () => {
 
     return (
         <div className="flex items-center justify-center w-full py-4">
-            <div className="mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10">
+            <div className="dark:bg-neutral-900 dark:text-white text-neutral-900 mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10 dark:border-white/10 font-secondary">
                 <div className="mb-2 flex justify-center">
-                    <span className="inline-block w-full max-w-[150px]">
+                    <span className="text-center text-3xl w-full font-primary max-w-[150px]">
                         Boardify
                     </span>
                 </div>
                 <h2 className="text-center text-2xl fond-bold leading-tight">
                     Sign in to your account
                 </h2>
-                <p className="mt-2 text-center text-base text-black/60">
+                <p className="mt-2 text-center text-base text-black/60 dark:text-white/60">
                     Don&apos;t have any account?&nbsp;
                     <Link
                         to="/signup"
@@ -52,7 +52,7 @@ const Login = () => {
                 </p>
                 {error &&  <p className="text-red-600 mt-8 text-center">{error}</p>}
                 <form onSubmit={handleSubmit(login)} className="mt-8">
-                    <div className="space-y-5">
+                    <div className="space-y-5 text-xl">
                         <Input 
                             label="Email: "
                             placeholder="Enter your email"
@@ -73,7 +73,7 @@ const Login = () => {
                             })}
                         />
                         <Button
-                            type="submit" className="w-full hover:bg-orange-500 ease duration-150" bgColor='bg-orange-600'
+                            type="submit" className="w-full"
                         >
                             Sign in
                         </Button>

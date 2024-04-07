@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react'
-import { Button, Input, Menu } from '../components/index.js';
+import { Button, Input } from '../components/index.js';
 import appwriteService from "../appwrite/config.js";
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -52,34 +52,31 @@ const CreateBoard = () => {
   }, [watch, slugTransform, setValue])
 
   return !isSubmitted ? (
-    <div>
-      <div>
-        <Menu />
-      </div>
-      <form onSubmit={handleSubmit(save)} className="flex flex-col items-center justify-center h-screen font-secondary -m-24">
-      <Input
-        label=""
-        placeholder="Enter board title"
-        className="mb-4 placeholder:text-xl"
-        {...register("title", { required: true })}
-      />
-      <Button 
-        type="submit" className="mt-2 text-xl"
-      >
-        Create a Board
-      </Button>
-      <div className="hidden">
+    <div className="dark:bg-neutral-900 dark:text-white bg-white text-neutral-900">
+      <form onSubmit={handleSubmit(save)} className="flex flex-col items-center justify-center h-screen font-secondary -p-24">
         <Input
-          label="Slug :"
-          placeholder="Slug"
-          className="mb-4"
-          {...register("slug", { required: true })}
-          onInput={(e) => {
-              setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true });
-          }}
+          label=""
+          placeholder="Enter board title"
+          className="mb-4 placeholder:text-xl"
+          {...register("title", { required: true })}
         />
-      </div>
-    </form>
+        <Button 
+          type="submit" className="mt-2 text-xl"
+        >
+          Create a Board
+        </Button>
+        <div className="hidden">
+          <Input
+            label=""
+            placeholder="Slug"
+            className="mb-4"
+            {...register("slug", { required: true })}
+            onInput={(e) => {
+                setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true });
+            }}
+          />
+        </div>
+      </form>
     </div>
   ) : null
 }

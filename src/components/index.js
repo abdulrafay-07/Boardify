@@ -7,4 +7,4 @@ import Signup from "./Auth/Signup";
 import Protected from "./Auth/AuthLayout";
 import Boards from "./Board/Boards";
 
-export {Menu, Button, Welcome, Input, Login, Signup, Protected, Boards };
+export {Menu, Button, Welcome, Input, Login, Signup, Protected, Boards, };

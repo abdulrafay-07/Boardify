@@ -19,7 +19,7 @@ const Welcome = () => {
     }, [])
 
     return (
-        <div className="fixed top-0 right-0 px-4 py-2 border-2 border-black rounded-2xl m-3 lg:m-6">
+        <div className="dark:bg-neutral-900 dark:text-white bg-white text-neutral-900 px-4 py-2 border-2 border-black dark:border-white rounded-2xl m-3 lg:m-6">
             <h2 className="text-xl md:text-2xl font-secondary">Welcome {username}!</h2>
         </div>
     )
