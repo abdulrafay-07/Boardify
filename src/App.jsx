@@ -23,7 +23,7 @@ function App() {
       }
     })
     .finally(() => setLoading(false));
-  }, [])
+  }, [status])
 
   const handleThemeToggle = () => {
     dispatch(toggleTheme());
